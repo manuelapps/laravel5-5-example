@@ -7,6 +7,15 @@ use App\Models\Post;
 
 class Category extends Model {
 
+    /**
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
+    protected $fillable = [
+        'title', 'slug'
+    ];
+
 	/**
 	 * Get the route key for the model.
 	 *
@@ -14,7 +23,7 @@ class Category extends Model {
 	 */
 	public function getRouteKeyName()
 	{
-	    return 'slug';
+	    return request()->segment(1) === 'admin' ? 'id' : 'slug';
 	}
 
 	/**
